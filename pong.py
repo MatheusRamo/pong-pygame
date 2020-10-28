@@ -36,11 +36,11 @@ while runing:
     screen.fill(black)
     pygame.draw.rect(screen, cor, board, 10)
 
-    pygame.draw.rect(screen, white, rectLeft)
+    pygame.draw.rect(screen, cor, rectLeft)
 
-    pygame.draw.rect(screen, white, rectRight)
+    pygame.draw.rect(screen, cor, rectRight)
 
-    pygame.draw.rect(screen, cor, ball)
+    pygame.draw.rect(screen, white, ball)
 
     screen.blit(text,[150,20])
 
@@ -58,15 +58,33 @@ while runing:
     key = pygame.key.get_pressed()
     # Player Left
     if key[pygame.K_w]:
-        rectLeft.y = rectLeft.y - 1
+
+        if rectLeft.y < 0:
+            rectLeft.y = 0
+        else:
+            rectLeft.y = rectLeft.y - 1
+
     if key[pygame.K_s]:
-        rectLeft.y = rectLeft.y + 1
+
+        if rectLeft.y > 520:
+            rectLeft.y = 520
+        else:
+            rectLeft.y = rectLeft.y + 1
     
     # Player Right
     if key[pygame.K_UP]:
-        rectRight.y = rectRight.y - 1
+
+        if rectRight.y < 0:
+            rectRight.y = 0
+        else:
+            rectRight.y = rectRight.y - 1
+
     if key[pygame.K_DOWN]:
-        rectRight.y = rectRight.y + 1
+
+        if rectRight.y > 520:
+            rectRight.y = 520
+        else:
+            rectRight.y = rectRight.y + 1
 
     # Board Colision
     if ball.x > 580:
